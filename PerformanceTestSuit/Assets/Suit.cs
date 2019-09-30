@@ -1,7 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
+
+#if UNITY_EDITOR
+public static class Debug
+{
+	[Conditional("LOG_ENABLE")]
+	public static void Log(object message)
+	{
+		Debug.Log(message);
+	}
+
+	[Conditional("LOG_ENABLE")]
+	public static void LogFormat(string format, params object[] args)
+	{
+		Debug.LogFormat(format, args);
+	}
+}
+#endif
 
 public class Suit : MonoBehaviour
 {
@@ -11,7 +29,8 @@ public class Suit : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		var hoge = 10;
+		Debug.LogFormat("Kenji{0}", hoge);
     }
 
     // Update is called once per frame
